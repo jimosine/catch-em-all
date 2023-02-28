@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Result, RootObject } from 'src/app/models/pokeResponse';
-import { PokeapiService } from 'src/app/services/pokeapi.service';
+
 
 @Component({
   selector: 'app-pokemon-item',

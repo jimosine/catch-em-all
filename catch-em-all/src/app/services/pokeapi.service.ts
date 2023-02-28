@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Result, RootObject } from '../models/pokeResponse';
+import { Pokemon, RootObject } from '../models/pokeResponse';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class PokeapiService {
   private _pokemonName: string = ""
   private _pokemonId: string = ""
   private _pokemonPic: string = ""
-  private _pokemons: Result[] = []
+  private _pokemons: Pokemon[] = []
 
   public get pokemonName(): string {
     return this._pokemonName
@@ -25,7 +25,7 @@ export class PokeapiService {
   public get pokemonPic(): string {
     return this._pokemonPic
   }
-  public get pokemons(): Result[] {
+  public get pokemons(): Pokemon[] {
     return this._pokemons
   }
 

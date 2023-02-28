@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Result, RootObject } from 'src/app/models/pokeResponse';
+import { Pokemon, RootObject } from 'src/app/models/pokeResponse';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class PokelogComponent {
   //   return this.pokeapiService.pokemonPic
   // }
 
-  public get pokemons(): Result[] {
+  public get pokemons(): Pokemon[] {
     return this.pokeapiService.pokemons
   }
 
