@@ -12,6 +12,8 @@ export class PokemonItemComponent {
 
   public picture: string = ""
 
+  constructor(private readonly pokeapiService: PokeapiService) { }
+
 
   ngOnInit(): void {
     this.picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1) + ".png"
@@ -19,8 +21,9 @@ export class PokemonItemComponent {
 
   }
 
-  handleCatch(): void {
-    console.log(this.pokemon.name + " Gevangen");
+  handleCatch(name: string): void {
+    console.log(name + " Gevangen");
+    this.pokeapiService.catchPokemon(name)
 
   }
 
