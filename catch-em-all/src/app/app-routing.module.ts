@@ -5,13 +5,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
-  { path: "trainer", component: TrainerComponent },
-  { path: "catalogue", component: CatalogueComponent }
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'trainer', component: TrainerComponent },
+  { path: 'catalogue', component: CatalogueComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
