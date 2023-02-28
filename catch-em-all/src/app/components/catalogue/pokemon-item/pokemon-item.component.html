@@ -1,0 +1,7 @@
+<div>
+    <p>{{pokemon.name}}</p>
+    <p>{{pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)}}</p>
+    <img [src]="picture" [alt]="pokemon.name">
+    <button (click)="handleCatch()">Catch!</button>
+    <hr>
+</div>
