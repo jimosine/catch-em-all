@@ -1,1 +1,12 @@
-<p>login-form works!</p>
+<form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+  <label for="username">username</label>
+  <input
+    ngModel
+    #username="ngModel"
+    type="text"
+    name="username"
+    id="username"
+    placeholder="Type your username"
+  />
+  <button type="submit">Login</button>
+</form>
