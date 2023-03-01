@@ -28,6 +28,13 @@ export class PokelogComponent {
     return this.pokeapiService.pokemons
   }
 
+  public get loading(): boolean {
+    return this.pokeapiService.loading
+  }
+
+  public get error(): string {
+    return this.pokeapiService.error
+  }
 
   ngOnInit(): void {
     // this.pokeapiService.getPokemon()

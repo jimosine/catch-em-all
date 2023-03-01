@@ -1,7 +1,29 @@
-<div>
+<!-- <div>
     <p>{{pokemon.name}}</p>
     <p>{{pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)}}</p>
     <img [src]="picture" [alt]="pokemon.name">
     <button (click)="handleCatch()">Catch!</button>
     <hr>
-</div>
+</div> -->
+
+<section>
+    <app-catch-button [pokemonName]="pokemon.name"></app-catch-button>
+    <img [src]="picture" [alt]="pokemon.name">
+</section>
+<section>
+    <span>{{ pokemon.name }} with id: {{ id }}</span>
+</section>
+
+<section>
+    <span> More info: </span>
+    <ul>
+        <li>Stats: ...</li>
+        <li>Abilities: ...</li>
+    </ul>
+</section>
+
+
+
+<hr>
+<!-- <p>{{pokemon.name}}</p>
+<img [src]="picture" [alt]="pokemon.name"> -->
