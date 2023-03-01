@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Pokemon, RootObject } from '../models/pokeResponse';
 import { finalize, map } from 'rxjs';
 import { StorageUtil } from '../utils/storage.util';
+import { StorageKeys } from '../enums/storage-key.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -30,61 +31,46 @@ export class PokeapiService {
 
   getPokemons(): void {
 
-    this._loading = true
-    this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5') //omschrijven om apiPokemon const gebruiken
-      .pipe(
-        map((response: RootObject) => response.results),
+    //If not in localStorage, then get from pokeAPI
+    if (StorageUtil.sessionStorageRead<Pokemon[]>(StorageKeys.Pokemon) === undefined) {
 
-        finalize(() => {
-          this._loading = false
-        })
-      )
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this._pokemons = response
+      this._loading = true
+      this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5') //omschrijven om apiPokemon const gebruiken
+        .pipe(
+          map((response: RootObject) => response.results),
 
-          // store in session
-          for (let pokemons of response) {
-            const id = pokemons.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
-            StorageUtil.sessionStorageSave<string>(pokemons!.name, id);
+          finalize(() => {
+            this._loading = false
+          })
+        )
+        .subscribe({
+          next: (response) => {
+            this._pokemons = response
+
+            // store all pokemon as Pokemon[] in session storage
+            StorageUtil.sessionStorageSave<Pokemon[]>(StorageKeys.Pokemon, response!);
+
+          },
+          error: (error: HttpErrorResponse) => {
+            this._error = error.message
+            console.error(error.message)
           }
-        },
-        error: (error: HttpErrorResponse) => {
-          this._error = error.message
-          console.error(error.message)
-        }
-      })
+        })
+    }
+
+    //Otherwise retrieve the pokemon from sessionStorage
+    //even after checking before that the value !== undefined,
+    //it still does let us use normal sessionRead, so pokeStorage
+    //is specific for this
+    else {
+      this._pokemons = StorageUtil.pokeStorageRead(StorageKeys.Pokemon)
+    }
+
   }
 
 
   public pokemonByName(name: string): Pokemon | undefined {
     return this._pokemons.find((pokemon: Pokemon) => pokemon.name === name)
   }
-
-
-
-
-
-
-
-
-  // //wordt niet gebruikt
-  // //maar even ander voorbeeld
-  // getPokemon(): void {
-  //   this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1')
-  //     .pipe(
-  //       map((response) => response.results[0])
-  //     )
-  //     .subscribe({
-  //       next: (response) => {
-  //         console.log(response);
-  //         this._pokemonName = response.name
-  //         this._pokemonId = response.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
-  //         this._pokemonPic = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this._pokemonId + ".png"
-  //       },
-  //       error: (error) => { console.error(error.message) }
-  //     })
-  // }
 
 }

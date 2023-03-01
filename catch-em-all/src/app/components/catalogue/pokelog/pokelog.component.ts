@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { StorageKeys } from 'src/app/enums/storage-key.enum';
 import { Pokemon, RootObject } from 'src/app/models/pokeResponse';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
+import { StorageUtil } from 'src/app/utils/storage.util';
 
 @Component({
   selector: 'app-pokelog',
@@ -12,17 +14,6 @@ export class PokelogComponent {
 
   constructor(private readonly pokeapiService: PokeapiService) { }
 
-
-  // public get name(): string {
-  //   return this.pokeapiService.pokemonName
-  // }
-  // public get id(): string {
-  //   const url = this.pokeapiService.pokemonId
-  //   return url
-  // }
-  // public get picture(): string {
-  //   return this.pokeapiService.pokemonPic
-  // }
 
   public get pokemons(): Pokemon[] {
     return this.pokeapiService.pokemons
@@ -37,9 +28,6 @@ export class PokelogComponent {
   }
 
   ngOnInit(): void {
-    // this.pokeapiService.getPokemon()
     this.pokeapiService.getPokemons()
   }
-
-
 }

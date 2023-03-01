@@ -32,4 +32,14 @@ export class StorageUtil {
       return undefined;
     }
   }
+
+  //Seems like we need this because it complains about "potentially" returning undefined
+  //in the pokeapi service, even after checking !== undefined
+  //wont give errors though, because we do this check beforehand
+  public static pokeStorageRead(key: string) {
+    const storedValue = sessionStorage.getItem(key);
+    if (storedValue) {
+      return JSON.parse(storedValue)
+    }
+  }
 }
