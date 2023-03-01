@@ -25,8 +25,21 @@ export class UserService {
 
   public inCollection(pokemonName: string): boolean {
     if (this._trainer) {
-      return Boolean(this.trainer?.pokemon.find((pokemon: Pokemon) => pokemon.name === pokemonName))
+      return Boolean(this._trainer.pokemon.find((pokemon: string) => pokemon === pokemonName))
     }
     return false
+  }
+
+  public addToCollection(pokemonName: string): void {
+    if (this._trainer) {
+      this._trainer.pokemon.push(pokemonName)
+    }
+  }
+
+  public removeFromCollection(pokemonName: string): void {
+    if (this._trainer) {
+      console.log(this._trainer.pokemon.filter((pokemon: string) => pokemon !== pokemonName))
+      this._trainer.pokemon = this._trainer.pokemon.filter((pokemon: string) => pokemon !== pokemonName)
+    }
   }
 }

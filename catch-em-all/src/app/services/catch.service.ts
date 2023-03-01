@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokeResponse';
 import { Trainer } from '../models/trainer.model';
@@ -13,12 +13,6 @@ const { apiKey, apiTrainers } = environment
   providedIn: 'root'
 })
 export class CatchService {
-
-  private _loading: boolean = false
-
-  get loading(): boolean {
-    return this._loading
-  }
 
   constructor(
     private readonly http: HttpClient,
@@ -40,7 +34,9 @@ export class CatchService {
     }
 
     if (this.userService.inCollection(pokemonName)) {
-      throw new Error("catchPokemon: Pokemon already in collection " + pokemonName)
+      this.userService.removeFromCollection(pokemonName)
+    } else {
+      this.userService.addToCollection(pokemonName)
     }
 
     const headers = new HttpHeaders({
@@ -48,17 +44,13 @@ export class CatchService {
       'x-api-key': apiKey
     })
 
-    this._loading = true
 
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
-      pokemon: [...trainer.pokemon, pokemon.name]
+      pokemon: [...trainer.pokemon]
     }, { headers })
       .pipe(
         tap((updatedTrainer: Trainer) => {
           this.userService.trainer = updatedTrainer
-        }),
-        finalize(() => {
-          this._loading = false
         })
       )
   }
