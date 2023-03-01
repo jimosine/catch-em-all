@@ -29,21 +29,25 @@ export class PokeapiService {
   }
 
   getPokemons(): void {
+
     this._loading = true
     this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5') //omschrijven om apiPokemon const gebruiken
       .pipe(
+        map((response: RootObject) => response.results),
+
         finalize(() => {
           this._loading = false
         })
       )
       .subscribe({
         next: (response) => {
-          //console.log(response.results);
-          this._pokemons = response.results
-          for (let p of response.results) {
-            console.log(p.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1))
-            const id = p.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
-            StorageUtil.sessionStorageSave<string>(id, p.name!);
+          console.log(response);
+          this._pokemons = response
+
+          // store in session
+          for (let pokemons of response) {
+            const id = pokemons.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
+            StorageUtil.sessionStorageSave<string>(pokemons!.name, id);
           }
         },
         error: (error: HttpErrorResponse) => {

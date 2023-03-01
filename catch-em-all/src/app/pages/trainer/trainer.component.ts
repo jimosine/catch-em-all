@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Pokemon } from 'src/app/models/pokeResponse';
 import { Trainer } from 'src/app/models/trainer.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,9 +14,18 @@ export class TrainerComponent {
     return this.userService.trainer
   }
 
-  get pokemons(): string[] {
+  get pokemons(): Pokemon[] {
     if (this.userService.trainer) {
-      return this.userService.trainer.pokemon
+      const pokemonNames: string[] = this.userService.trainer.pokemon
+      //console.log(pokemonNames);
+
+      const pokemonArray: Pokemon[] = pokemonNames.map(name => {
+        return {
+          name: name,
+          url: ''
+        }
+      });
+      return pokemonArray
     }
 
     return []
