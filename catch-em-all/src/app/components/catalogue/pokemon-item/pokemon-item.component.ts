@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokeResponse';
+import { StorageUtil } from 'src/app/utils/storage.util';
 
 
 @Component({
@@ -12,18 +13,14 @@ export class PokemonItemComponent {
   @Input() pokemon!: Pokemon
 
   public picture: string = ""
-  public id: string = ""
+  public id: any
 
 
   ngOnInit(): void {
-    this.picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1) + ".png"
-    this.id = this.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
-
+    this.id = StorageUtil.sessionStorageRead<string>(this.pokemon.name)
+    this.picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.id + ".png"
   }
 
-  handleCatch(): void {
-    //console.log(this.pokemon.name + " Gevangen");
 
-  }
 
 }
