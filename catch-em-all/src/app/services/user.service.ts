@@ -38,7 +38,6 @@ export class UserService {
 
   public removeFromCollection(pokemonName: string): void {
     if (this._trainer) {
-      console.log(this._trainer.pokemon.filter((pokemon: string) => pokemon !== pokemonName))
       this._trainer.pokemon = this._trainer.pokemon.filter((pokemon: string) => pokemon !== pokemonName)
     }
   }
