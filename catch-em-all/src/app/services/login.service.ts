@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Trainer } from '../models/trainer.model';
 
@@ -11,7 +11,7 @@ const { apiTrainers, apiKey } = environment;
 })
 export class LoginService {
   //Dependency Injection
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) { }
 
   //Models, HttpClient, Observables, and RxJS Operators
   public login(username: string): Observable<Trainer> {
@@ -31,7 +31,9 @@ export class LoginService {
   private checkTrainername(username: string): Observable<Trainer | undefined> {
     return this.http
       .get<Trainer[]>(`${apiTrainers}?username=${username}`)
-      .pipe(map((respons: Trainer[]) => respons.pop()));
+      .pipe(
+        map((response: Trainer[]) => response.pop())
+      )
   }
   // IF NOT user - Create a
   private createTrainer(username: string): Observable<Trainer> {
