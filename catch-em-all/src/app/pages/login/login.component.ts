@@ -9,8 +9,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 
 export class LoginComponent implements OnInit {
-  constructor(private readonly router: Router,
-    private readonly userService: UserService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly userService: UserService
+  ) { }
   ngOnInit(): void {
     if (this.userService.trainer) {
       this.router.navigateByUrl('/catalogue');
