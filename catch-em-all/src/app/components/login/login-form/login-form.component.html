@@ -1,12 +1,31 @@
-<form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
-  <label for="username">username</label>
-  <input
-    ngModel
-    #username="ngModel"
-    type="text"
-    name="username"
-    id="username"
-    placeholder="Type your username"
-  />
-  <button type="submit">Login</button>
-</form>
+<div class="login-wrapper">
+  <form
+    class="login-form"
+    #loginForm="ngForm"
+    (ngSubmit)="loginSubmit(loginForm)"
+  >
+    <div class="element1">
+      <img src="../../../../assets/pokeball.png" width="30" />
+    </div>
+    <div class="element2">
+      <img src="../../../../assets/pokeball.png" width="30" />
+    </div>
+    <div class="element3">
+      <img src="../../../../assets/pokeball.png" width="30" />
+    </div>
+    <div class="element4">
+      <img src="../../../../assets/pokeball.png" width="30" />
+    </div>
+    <label class="login-label" for="username">Choose your trainer</label>
+    <input
+      class="login-input"
+      ngModel
+      #username="ngModel"
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Type your username"
+    />
+    <button class="login-button" type="submit">Login</button>
+  </form>
+</div>

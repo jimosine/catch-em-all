@@ -1,0 +1,36 @@
+.navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 4rem;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    290deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(204, 0, 0, 1) 100%
+  );
+  padding-left: 30px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+.nav-item {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+span {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.5rem;
+  color: whitesmoke;
+}

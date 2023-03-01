@@ -1,15 +1,13 @@
-<nav>
-    <span>Catch 'em all!</span>
-    <ng-container *ngIf="trainer !== undefined">
-        <ul>
-            <li>
-                <a routerLink="catalogue"> Pokedex </a>
-            </li>
-
-            <li>
-                <a routerLink="trainer"> Trainer </a>
-            </li>
-
-        </ul>
-    </ng-container>
+<nav class="navbar">
+  <span>Catch 'em all!</span>
+  <ng-container *ngIf="trainer !== undefined">
+    <ul class="nav-links">
+      <li>
+        <a routerLink="catalogue" class="nav-item"> Pokedex </a>
+      </li>
+      <li>
+        <a routerLink="trainer" class="nav-item"> Trainer </a>
+      </li>
+    </ul>
+  </ng-container>
 </nav>
