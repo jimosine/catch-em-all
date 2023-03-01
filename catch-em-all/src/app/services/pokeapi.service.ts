@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Pokemon, RootObject } from '../models/pokeResponse';
 import { finalize, map } from 'rxjs';
+import { StorageUtil } from '../utils/storage.util';
 
 @Injectable({
   providedIn: 'root'
@@ -10,24 +11,10 @@ export class PokeapiService {
 
   constructor(private readonly http: HttpClient) { }
 
-  // private _pokemonName: string = ""
-  // private _pokemonId: string = ""
-  // private _pokemonPic: string = ""
   private _pokemons: Pokemon[] = []
   private _error: string = ''
   private _loading: boolean = false
 
-  // public get pokemonName(): string {
-  //   return this._pokemonName
-  // }
-
-  // public get pokemonId(): string {
-  //   return this._pokemonId
-  // }
-
-  // public get pokemonPic(): string {
-  //   return this._pokemonPic
-  // }
 
   public get pokemons(): Pokemon[] {
     return this._pokemons
@@ -53,6 +40,11 @@ export class PokeapiService {
         next: (response) => {
           //console.log(response.results);
           this._pokemons = response.results
+          for (let p of response.results) {
+            console.log(p.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1))
+            const id = p.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1)
+            StorageUtil.sessionStorageSave<string>(id, p.name!);
+          }
         },
         error: (error: HttpErrorResponse) => {
           this._error = error.message
@@ -60,6 +52,7 @@ export class PokeapiService {
         }
       })
   }
+
 
   public pokemonByName(name: string): Pokemon | undefined {
     return this._pokemons.find((pokemon: Pokemon) => pokemon.name === name)

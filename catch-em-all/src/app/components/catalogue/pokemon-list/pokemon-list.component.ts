@@ -14,15 +14,4 @@ export class PokemonListComponent {
   public picture: string = ""
 
 
-  ngOnInit(): void {
-    //this.picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + this.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").slice(0, -1) + ".png"
-
-
-  }
-
-  handleCatch(): void {
-    //console.log(this.pokemon.name + " Gevangen");
-
-  }
-
 }

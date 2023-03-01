@@ -3,5 +3,5 @@ import { Pokemon } from "./pokeResponse";
 export interface Trainer {
   id: number;
   username: string;
-  pokemon: Pokemon[];
+  pokemon: string[];
 }

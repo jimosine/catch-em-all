@@ -1,5 +1,23 @@
 <aside>
+
     <button (click)="onCatchClick()">
-        <span class="material-icons">favorite</span>
+
+        <ng-container *ngIf="!loading; else spinner">
+
+            <ng-container *ngIf="isCaught; then caught else notCaught"></ng-container>
+
+            <ng-template #caught>
+                <span class="material-icons"> favorite </span>
+            </ng-template>
+            <ng-template #notCaught>
+                <span class="material-icons"> favorite_border </span>
+            </ng-template>
+
+        </ng-container>
+
+        <ng-template #spinner>
+            <fa-icon [icon]="faCircle" animation="spin"></fa-icon>
+        </ng-template>
+
     </button>
 </aside>
