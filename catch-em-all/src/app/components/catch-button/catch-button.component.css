@@ -1,0 +1,9 @@
+.catch-button {
+    position:absolute;
+    top:0;
+    right:0;
+    border: none;
+    margin: 5px;
+    padding: 10px 10px;
+    background-color: #f4f4f4;
+}

@@ -1,0 +1,26 @@
+.task {
+    background: #f4f4f4;
+    margin: 5px;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 25px;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .avatar {
+    border: 2px solid black;
+    border-radius: 25px;
+  }
+
+  .pokemon-name {
+    text-align: left;
+    padding-top: 20px;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+  }
+
+
+  .flex-child {
+    flex: 1;
+}  
