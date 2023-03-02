@@ -1,12 +1,23 @@
+//These functions are responsible for storing and retrieving data in the local and session storage
+//Local Storage is used to store a user, Session storage is used to store all pokemons so we don't
+//need to fetch them from PokeAPI server every time. An additional session storage read function is 
+//implemented which can't return undefined, which was a requirement in the pokeapi service.
+
 export class StorageUtil {
+
+  //Store data in the local storage by providing a key string (only strings allowed in local storage)
+  //The value can be any object, but will be casted to a string
   public static storageSave<T>(key: string, value: T): void {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
+  //Same for session storage
   public static sessionStorageSave<T>(key: string, value: T): void {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
+  //Retrieve data stored in the local storage by providing a key, return the value
+  //after transforming the value back to generic type
   public static storageRead<T>(key: string): T | undefined {
     const storedValue = localStorage.getItem(key);
     try {
@@ -20,6 +31,7 @@ export class StorageUtil {
     }
   }
 
+  //Same for session storage
   public static sessionStorageRead<T>(key: string): T | undefined {
     const storedValue = sessionStorage.getItem(key);
     try {

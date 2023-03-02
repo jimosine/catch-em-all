@@ -1,19 +1,21 @@
-<main>
-  <div class="trainer-wrapper">
+<div class="trainer-wrapper">
     <h1 class="header-title">
-      Welcome back {{ trainer?.username }} to your catched pokémon
+        Welcome back {{ trainer?.username }} to your pokémon collection!
     </h1>
+
+    <!-- If the current user doesn't have any pokemons in their collection tell them to start catching -->
+    <!-- Otherwise, display their collection by rendering a pokemon-list component with the provided Pokemon[] -->
     <main *ngIf="pokemons.length > 0">
-    <p class="header-text">
-      Here's a list of all your catched pokémons. You can remove pokémons from
-      your list to klick on the heart icon.
-    </p>
-    <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+        <p class="header-text">
+            Here's a list of all the pokémons you caught! You can release pokémons from
+            your collection by clicking on the heart icon again, but this will make your pokémon sad 😢
+        </p>
+        <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
     </main>
     <main *ngIf="pokemons.length === 0">
-    <p>Start catching pokemons dude, take a look at the <a routerLink="../catalogue" class="nav-item"> Pokedex! </a>
-    </p>
-</main>
-  </div>
-</main>
-
+        <p class="header-text">Start catching pokémons dude, take a look at the <a routerLink="../catalogue"
+                class="nav-item"> Pokedex!
+            </a>
+        </p>
+    </main>
+</div>

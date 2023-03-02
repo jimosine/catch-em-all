@@ -1,3 +1,4 @@
+//API settings, please dont publish the key :)
 export const environment = {
   production: false,
   apiTrainers: 'https://jb-lost-in-translation-api-production.up.railway.app/trainers',

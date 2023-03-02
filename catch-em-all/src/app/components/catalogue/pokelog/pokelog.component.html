@@ -1,12 +1,13 @@
-<!-- Loading message -->
+<!-- Show a loading message -->
 <p *ngIf="loading">Loading pokemon...</p>
 <div class="catalogue-wrapper">
   <h1 class="header-title">Pokedex</h1>
   <p class="header-text">
-    This is the pokédex of all pokémons in the first generation. You can choose
-    your pokemon to click on the heart icon.<br />
-    With the paganation you can go through all 151 pokémons
+    This is the pokédex of all pokémons from the first generation. You can catch
+    a pokemon by clicking on the heart icon. ❤️ <br />
+    Scroll through all 151 pokémons and catch 'em all trainer! 🎣
   </p>
 
+  <!-- Generate a pokemon list component with the users pokemons as parameter -->
   <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
 </div>
