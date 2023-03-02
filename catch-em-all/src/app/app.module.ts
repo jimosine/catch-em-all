@@ -15,6 +15,7 @@ import { PokemonListComponent } from './components/catalogue/pokemon-list/pokemo
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CatchButtonComponent } from './components/catch-button/catch-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     CatchButtonComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, FontAwesomeModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, FontAwesomeModule, NgxPaginationModule],
   providers: [],
   bootstrap: [AppComponent],
 })

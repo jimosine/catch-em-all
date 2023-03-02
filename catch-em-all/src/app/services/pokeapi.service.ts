@@ -35,7 +35,7 @@ export class PokeapiService {
     if (StorageUtil.sessionStorageRead<Pokemon[]>(StorageKeys.Pokemon) === undefined) {
 
       this._loading = true
-      this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5') //omschrijven om apiPokemon const gebruiken
+      this.http.get<RootObject>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151') //omschrijven om apiPokemon const gebruiken
         .pipe(
           map((response: RootObject) => response.results),
 
