@@ -3,10 +3,17 @@
     <h1 class="header-title">
       Welcome back {{ trainer?.username }} to your catched pokémon
     </h1>
+    <main *ngIf="pokemons.length > 0">
     <p class="header-text">
       Here's a list of all your catched pokémons. You can remove pokémons from
       your list to klick on the heart icon.
     </p>
     <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+    </main>
+    <main *ngIf="pokemons.length === 0">
+    <p>Start catching pokemons dude, take a look at the <a routerLink="../catalogue" class="nav-item"> Pokedex! </a>
+    </p>
+</main>
   </div>
 </main>
+

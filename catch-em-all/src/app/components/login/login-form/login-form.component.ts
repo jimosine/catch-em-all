@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Trainer } from 'src/app/models/trainer.model';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,9 +15,11 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private readonly loginService: LoginService,
     private readonly userService: UserService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   public loginSubmit(loginForm: NgForm): void {
     const { username } = loginForm.value;
@@ -27,7 +29,13 @@ export class LoginFormComponent implements OnInit {
         this.userService.trainer = trainer;
         this.login.emit();
       },
-      error: () => {},
+      error: () => { },
     });
+  }
+}
+function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = nameRe.test(control.value);
+    return forbidden ? { forbiddenName: { value: control.value } } : null;
   }
 }
