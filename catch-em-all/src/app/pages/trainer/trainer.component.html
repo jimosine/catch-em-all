@@ -1,7 +1,12 @@
-<header>
-    <h1>Welcome, username</h1>
-</header>
 <main>
-    <h4>Your pokemon:</h4>
+  <div class="trainer-wrapper">
+    <h1 class="header-title">
+      Welcome back {{ trainer?.username }} to your catched pokémon
+    </h1>
+    <p class="header-text">
+      Here's a list of all your catched pokémons. You can remove pokémons from
+      your list to klick on the heart icon.
+    </p>
     <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+  </div>
 </main>

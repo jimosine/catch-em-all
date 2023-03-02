@@ -5,3 +5,20 @@
 body {
   margin: 0;
 }
+
+.pokemon-item p {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.header-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.header-title {
+  font-family: "Fredoka One", cursive;
+  letter-spacing: 0.1rem;
+}

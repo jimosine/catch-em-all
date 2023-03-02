@@ -1,7 +1,12 @@
-<p>pokelog works!</p>
-<hr>
-
 <!-- Loading message -->
-<p *ngIf="loading"> Loading pokemon... </p>
+<p *ngIf="loading">Loading pokemon...</p>
+<div class="catalogue-wrapper">
+  <h1 class="header-title">Pokedex</h1>
+  <p class="header-text">
+    This is the pokédex of all pokémons in the first generation. You can choose
+    your pokemon to click on the heart icon.<br />
+    With the paganation you can go through all 151 pokémons
+  </p>
 
-<app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+  <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+</div>
