@@ -1,3 +1,5 @@
-<app-pokemon-item *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
+<app-pokemon-item *ngFor="let pokemon of pokemons  | paginate: { itemsPerPage: 10, currentPage: p }"
+    [pokemon]="pokemon">
 
 </app-pokemon-item>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
