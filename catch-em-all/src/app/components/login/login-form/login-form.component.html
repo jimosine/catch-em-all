@@ -1,9 +1,5 @@
 <div class="login-wrapper">
-  <form
-    class="login-form"
-    #loginForm="ngForm"
-    (ngSubmit)="loginSubmit(loginForm)"
-  >
+  <form class="login-form" #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
     <div class="element1">
       <img src="../../../../assets/pokeball.png" width="30" />
     </div>
@@ -17,15 +13,22 @@
       <img src="../../../../assets/pokeball.png" width="30" />
     </div>
     <label class="login-label" for="username">Choose your trainer</label>
-    <input
-      class="login-input"
-      ngModel
-      #username="ngModel"
-      type="text"
-      name="username"
-      id="username"
-      placeholder="Type your username"
-    />
-    <button class="login-button" type="submit">Login</button>
+    <input class="form-control" ngModel #username="ngModel" type="text" name="username" id="username"
+      placeholder="Type your username" required minlength="3" appForbiddenName="/^[A-Za-z]+$/" />
+
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+
+      <div *ngIf="username.errors?.['required']">
+        Userame is required.
+      </div>
+      <div *ngIf="username.errors?.['minlength']">
+        Username must be at least 3 characters long.
+      </div>
+      <div *ngIf="username.errors?.['appForbiddenName']">
+        No special characters
+      </div>
+
+    </div>
+    <button class="login-button" type="submit" [disabled]="loginForm.form.invalid">Login</button>
   </form>
 </div>

@@ -1,7 +1,13 @@
 <header>
     <h1>Welcome, username</h1>
 </header>
-<main>
+
+<main *ngIf="pokemons.length > 0">
     <h4>Your pokemon:</h4>
     <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+</main>
+
+<main *ngIf="pokemons.length === 0">
+    <p>Start catching pokemons dude, take a look at the <a routerLink="../catalogue" class="nav-item"> Pokedex! </a>
+    </p>
 </main>
