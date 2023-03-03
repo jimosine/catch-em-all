@@ -1,23 +1,24 @@
-<aside>
+<!-- Execute the onCatchClick event when the catch button is clicked -->
+<button (click)="onCatchClick()" class="catch-button">
 
-    <button (click)="onCatchClick()" class="catch-button">
+    <!-- If loading constant is set to true, go to the spinner template  -->
+    <ng-container *ngIf="!loading; else spinner">
 
-        <ng-container *ngIf="!loading; else spinner">
+        <!-- If the pokemon is already in user's collection display a heart otherwise only border -->
+        <ng-container *ngIf="isCaught; then caught else notCaught"></ng-container>
 
-            <ng-container *ngIf="isCaught; then caught else notCaught"></ng-container>
-
-            <ng-template #caught>
-                <span class="material-icons"> favorite </span>
-            </ng-template>
-            <ng-template #notCaught>
-                <span class="material-icons"> favorite_border </span>
-            </ng-template>
-
-        </ng-container>
-
-        <ng-template #spinner>
-            <fa-icon [icon]="faCircle" animation="spin"></fa-icon>
+        <ng-template #caught>
+            <span class="material-icons"> favorite </span>
+        </ng-template>
+        <ng-template #notCaught>
+            <span class="material-icons"> favorite_border </span>
         </ng-template>
 
-    </button>
-</aside>
+    </ng-container>
+
+    <!-- Show an animated circle when loading -->
+    <ng-template #spinner>
+        <fa-icon [icon]="faCircle" animation="spin"></fa-icon>
+    </ng-template>
+
+</button>

@@ -1,11 +1,11 @@
 <div class="pokemon-list-wrapper">
-  <app-pokemon-item
-    class="pokemon-item"
-    *ngFor="
+  <!-- Create n amount of pokemon-item, by looping over the Pokemon[] provided by the pokelog component -->
+  <!-- Uses pagination to show 12 pokemon items per page -->
+  <!-- Provides the Pokemon object to the pokemon item component -->
+  <app-pokemon-item class="pokemon-item" *ngFor="
       let pokemon of pokemons | paginate : { itemsPerPage: 12, currentPage: p }
-    "
-    [pokemon]="pokemon"
-  >
+    " [pokemon]="pokemon">
   </app-pokemon-item>
 </div>
+<!-- Set p to the next page -->
 <pagination-controls (pageChange)="p = $event"></pagination-controls>

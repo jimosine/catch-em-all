@@ -1,21 +1,14 @@
 <div class="pokemon-details">
-  <div class="flex-child">
-    <app-catch-button
-      [pokemonName]="pokemon.name"
-      class="catch-button"
-    ></app-catch-button>
-    <img [src]="picture" [alt]="pokemon.name" class="avatar" />
-    <p class="pokemon-id">#{{ id }}</p>
-  </div>
-  <div class="flex-child">
-    <p class="pokemon-name">{{ pokemon.name }}</p>
-  </div>
-
-  <!-- <section>
-        <span> More info: </span>
-        <ul>
-            <li>Stats: ...</li>
-            <li>Abilities: ...</li>
-        </ul>
-    </section> -->
+    <div class="flex-child">
+        <!-- Provide the catch-button component with the pokemons name. -->
+        <app-catch-button [pokemonName]="pokemon.name" class="catch-button"></app-catch-button>
+        <!-- Display an image of the pokemon. -->
+        <img [src]="picture" [alt]="pokemon.name" class="avatar" />
+        <!-- Display the pokemons id. -->
+        <p class="pokemon-id">#{{ id }}</p>
+    </div>
+    <div class="flex-child">
+        <!-- Display the pokemons name, but capitalize the first letter. -->
+        <p class="pokemon-name">{{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}</p>
+    </div>
 </div>

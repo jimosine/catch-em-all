@@ -1,5 +1,8 @@
 <div class="login-wrapper">
+
   <form class="login-form" #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+
+    <!-- Styling for the login component -->
     <div class="element1">
       <img src="../../../../assets/pokeball.png" width="30" />
     </div>
@@ -13,9 +16,12 @@
       <img src="../../../../assets/pokeball.png" width="30" />
     </div>
     <label class="login-label" for="username">Choose your trainer</label>
+
+    <!-- Use Angular forms, require user to fill in an username of 3 characters -->
     <input class="form-control" ngModel #username="ngModel" type="text" name="username" id="username"
       placeholder="Type your username" required minlength="3" appForbiddenName="/^[A-Za-z]+$/" />
 
+    <!-- Display different messages when validating the input of a form -->
     <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
 
       <div *ngIf="username.errors?.['required']">
@@ -29,6 +35,8 @@
       </div>
 
     </div>
+
+    <!-- The button only submits when the form input is valid  -->
     <button class="login-button" type="submit" [disabled]="loginForm.form.invalid">Login</button>
   </form>
 </div>

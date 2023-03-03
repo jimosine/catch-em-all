@@ -1,9 +1,9 @@
+//Imports
 import { Component } from '@angular/core';
-import { StorageKeys } from 'src/app/enums/storage-key.enum';
-import { Pokemon, RootObject } from 'src/app/models/pokeResponse';
+import { Pokemon } from 'src/app/models/pokeResponse';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
-import { StorageUtil } from 'src/app/utils/storage.util';
 
+//Declaration
 @Component({
   selector: 'app-pokelog',
   templateUrl: './pokelog.component.html',
@@ -12,13 +12,15 @@ import { StorageUtil } from 'src/app/utils/storage.util';
 export class PokelogComponent {
 
 
+  //Inject with the PokeAPI service to get all pokemons.
   constructor(private readonly pokeapiService: PokeapiService) { }
 
-
+  //Store the pokemons (as a Pokemon[]) in the pokemons const by using the service getter.
   public get pokemons(): Pokemon[] {
     return this.pokeapiService.pokemons
   }
 
+  //Boolean const to display a loading message when the app or API is loading pokemon.
   public get loading(): boolean {
     return this.pokeapiService.loading
   }
@@ -27,6 +29,7 @@ export class PokelogComponent {
     return this.pokeapiService.error
   }
 
+  //Whenever a pokélog component is rendered, get the pokémon from storage or our server
   ngOnInit(): void {
     this.pokeapiService.getPokemons()
   }
