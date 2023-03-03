@@ -23,3 +23,12 @@ body {
   font-family: "Fredoka One", cursive;
   letter-spacing: 0.1rem;
 }
+
+.ngx-pagination .current {
+  background: #cc0000 !important;
+  color: snow !important;
+  border-radius: 2rem;
+}
+.ngx-pagination {
+  font-family: "Roboto", sans-serif;
+}
