@@ -11,3 +11,15 @@
   box-shadow: 0 0 40px rgb(8 7 16 / 10%);
   border-radius: 1rem;
 }
+
+@media only screen and (max-width: 950px) {
+  .pokemon-item {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .pokemon-item {
+    width: 70%;
+  }
+}
